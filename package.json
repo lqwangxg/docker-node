@@ -1,0 +1,26 @@
+{
+  "name": "docker-node",
+  "version": "1.0.0",
+  "description": "A sample of node server application running in docker container.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lqwangxg/docker-node.git"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "keywords": [
+    "docker-node"
+  ],
+  "author": "lqwangxg",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/lqwangxg/docker-node/issues"
+  },
+  "homepage": "https://github.com/lqwangxg/docker-node#readme"
+}
