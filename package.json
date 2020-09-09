@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/lqwangxg/docker-node/issues"
   },
-  "homepage": "https://github.com/lqwangxg/docker-node#readme"
+  "homepage": "https://github.com/lqwangxg/docker-node#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
