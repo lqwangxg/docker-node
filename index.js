@@ -1,7 +1,8 @@
 'use strict';
 
+const express = require('express');
 // Import Botkit's cor features
-const { Botkit } = reqire('botkit');
+const { Botkit } = require('botkit');
 // const { BotkitCMSHelper } = require('botkit-plugin-cms');
 
 const { WebAdapter } = require('botbuilder-adapter-web');
@@ -47,7 +48,6 @@ controller.ready(() => {
 
 
 
-// const express = require('express');
 
 // // Constants
 // const PORT = 8080;
