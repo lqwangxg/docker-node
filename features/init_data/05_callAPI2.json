@@ -1,0 +1,130 @@
+{
+  "adapter": [
+    "default",
+    "Web Adapter",
+    "websocket",
+    "webhook",
+    "line"
+  ],
+  "description": "第三者APIを呼出、結果を返す",
+  "type": "dialog",
+  "id": "query_movie",
+  "script": [
+    {
+      "topic": "default",
+      "type": "ask",
+      "text": "映画名を教えて下さい。",
+      "quick_replies": [
+        {
+          "title": "Who am I",
+          "payload": "Who am I",
+          "content_type": "text"
+        },
+        {
+          "title": "The black Knight",
+          "payload": "The black Knight",
+          "content_type": "text"
+        },
+        {
+          "title": "好きに入力",
+          "payload": "好きに入力",
+          "content_type": "text"
+        } 
+      ],
+      "collect": {
+        "key": "movie_name",
+        "options": [
+          {
+            "type": "string",
+            "pattern": "Who am I",
+            "thread_name":"question_movie_result"
+          },
+          {
+            "type": "string",
+            "pattern": "The black Knight",
+            "thread_name":"question_movie_result"
+          },
+          {
+            "type": "string",
+            "pattern": "好きに入力",
+            "thread_name":"question_movie_name"
+          },
+          {
+            "default": "true",
+            "thread_name":"question_movie_result",
+            "comment": "=====defaultが匿名として、メールアドレスの入力促進へ======"
+          }
+        ]
+      },
+      "after":{
+        "api":{
+          "url":"http://www.omdbapi.com/",
+          "headers": {"Content-Type": "application/json"},
+          "params":[
+            {"apikey":"d2cd581b"}
+          ],
+          "query":{
+            "name":"t",
+            "condition":"=",
+            "var_name":"movie_name"
+          },
+          "callback":{
+            "result_name": "movie",
+            "detail_name": "movie_detail",
+            "text":"映画「{{Title}}」の主役は {{Actors}}であり 、 {{Genre}} ,発行年は {{Year}}. 監督は {{Director}}であります。",
+            "comment":"======上記テンプレートはMustache.renderにより変換して出力され必要です。Chatbotの変数を利用するではない==========="
+          }
+        }
+      }
+    },
+    { 
+      "type": "question",
+      "before": [
+        {
+          "key":"movie_name",
+          "skip_on_valid": true
+        }
+      ],
+      "text": "映画名のみでご入力をお願い致します。例：七武海",
+      "collect":{
+        "key": "movie_name"
+      },
+      "thread_name":"question_movie_name",
+      "comment":"======入力待ちダイアログ↑==========="
+    },
+    {
+      "type": "message", 
+      "text": "{{vars.movie_name}}情報を探します。",
+      "thread_name":"question_movie_result"
+    },
+    { 
+      "type": "question",
+      "before": [
+        {
+          "key":"movie_detail",
+          "controller_var_name": "movie_detail"
+        }
+      ],
+      "text": "{{vars.movie_detail}}.引き続き他の映画を検索しますか？",
+      "collect":{
+        "key": "movie_name"
+      },
+      "thread_name":"question_movie_result",
+      "comment":"======入力待ちダイアログ↑==========="
+    },
+    {
+      "comment": "===上記質問に対して、「はい」以外の回答を頂く場合、question_contentへ===="
+    },
+    {
+      "type": "comment:variables", 
+      "valid": [
+        {
+          "key":"movie_name",
+          "type":"regex",
+          "pattern":"(^.+$)",
+          "fault_thread_name":"question_movie_name"
+        }
+      ]
+    }
+  ]
+}

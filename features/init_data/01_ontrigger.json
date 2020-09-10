@@ -1,0 +1,42 @@
+{
+  "adapter": [
+    "default",
+    "Web Adapter"
+  ],
+  "description": "初回接続、また再接続場合の挨拶文",
+  "type": "on",
+  "script": {
+    "events": [
+      "hello",
+      "welcome_back"
+    ],
+    "replys": [
+      {
+        "text": "ようこそ！いらっしゃいません。"
+      },
+      {"text": "MBPSmartecのボットです。只今テスト版の試行中で、お問い合わせ内容に直ちに回答できず、申し訳ございません。",
+        "comment:file": {
+          "name": "ようこそ",
+          "type": "image",
+          "imageUrl":  "https://github.com/lqwangxg/resources/blob/master/gif/happy.gif?raw=true",
+          "url": "https://mbpsmartec.co.jp/ja/"
+        }
+      },
+      {
+        "text":  "勤務時間帯に弊社受付者よりご回答させていただきますので、お問い合わせ内容の先にお名前、電話番号、メールアドレスのご入力が必要で、ご了承のほど宜しくお願い致します。",
+        "comment:file": {
+          "name": "MBP SMARTEC 株式会社",
+          "desc": ["MBP SMARTEC 株式会社", "〒101-0052　東京都千代田区神田小川町３－２２－１６　第三大丸ビル４階","Tel：03-6275-0950"],
+          "type": "html",
+          "url": "https://mbpsmartec.co.jp/ja/"
+        }
+      },
+      {
+        "text": "弊社の勤務時間帯：平日の９：００～１８：００"
+      },
+      {
+        "text": "では、お名前、電話番号、メールアドレス、お問い合わせ内容をどうぞ"
+      }
+    ]
+  }
+}

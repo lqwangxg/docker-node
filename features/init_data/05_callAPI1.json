@@ -1,0 +1,21 @@
+{
+  "adapter": [
+    "default",
+    "Web Adapter",
+    "websocket",
+    "webhook",
+    "line"
+  ],
+  "description": "第三者APIを呼出前準備",
+  "type": "hears",
+  "script": {
+    "keywords": ["/映画.*(検索|調査|調べ|教)/","/Movie\\s+Query/"],
+    "events": [
+      "message",
+      "text"
+    ],
+    "replys": "映画が好きでしょうか？",
+    "nlp": "dialogflow",
+    "dialog": "query_movie"
+  }
+}

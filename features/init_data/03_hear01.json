@@ -1,0 +1,23 @@
+{
+  "adapter": [
+    "default",
+    "Web Adapter",
+    "websocket",
+    "webhook",
+    "line"
+  ],
+  "description": "キーワードを聞き取れた場合",
+  "type": "hears",
+  "script": {
+    "keywords": ["help","ヘルプ", "/問[い]?合[せ]?/"],
+    "events": [
+      "message",
+      "text"
+    ],
+    "replys": [
+      {
+        "text": "どうぞ、ご用件を聞かせてください。"
+      }
+    ]
+  }
+}

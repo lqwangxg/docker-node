@@ -1,0 +1,50 @@
+{
+  "adapter": [
+    "default",
+    "Web Adapter",
+    "websocket",
+    "webhook",
+    "line"
+  ],
+  "type": "hears",
+  "script": [
+    {
+      "keywords": "/[御貴]社の強[み]?/",
+      "events": [
+        "message",
+        "text"
+      ],
+      "comment:required":{
+        "key":["username", "mail", "telno"],
+        "dialog":"confirm_userinfo"
+      },
+      "replys": [
+        {
+          "text": [
+            "以下の項目を選び頂きます。"
+          ],
+          "quick_replies": [
+            {
+              "title": "iot",
+              "payload": "iot",
+              "content_type": "text"
+            },
+            {
+              "title": "big data",
+              "payload": "bigdata",
+              "content_type": "text"
+            },
+            {
+              "title": "広域物流ソリューション",
+              "payload": "広域物流",
+              "content_type": "text"
+            }
+          ]
+        }
+      ],
+      "after":{
+        "key":"data"
+      }
+    }
+  ]
+}
