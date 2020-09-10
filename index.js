@@ -1,5 +1,8 @@
 'use strict';
 
+// Import Botkit's cor features
+const { Botkit } = reqire('botkit');
+
 const express = require('express');
 
 // Constants
